@@ -23,4 +23,18 @@ class PID:
     def set_target(self, target):
         self.target = target
 
-        
+    # Update the feedback to the controller (current value)
+    def update_feedback(self, feedback):
+        self.feedback = feedback
+
+    # Compute method
+    def compute(self):
+        # Calculate the error 
+        error = self.target - self.feedback
+
+        # Calculate proportional action
+        P = self.kp * error
+
+        # Integral action
+        # Estimate the integral of errors (sum tends to infinity)
+        self.integral += error * self.dt
