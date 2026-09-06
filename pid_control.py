@@ -47,3 +47,8 @@ class PID:
 
         # Store the previous error for utilization
         self.prev_error = error
+
+        # Calculate the total PID output (sum of all gains)
+        U = P + I + D
+
+        return U
