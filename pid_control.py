@@ -38,3 +38,12 @@ class PID:
         # Integral action
         # Estimate the integral of errors (sum tends to infinity)
         self.integral += error * self.dt
+        I = self.ki * self.integral
+
+        # Derivative action 
+        # Calculate the derivative (Slope)
+        derivative = (error - self.prev_error) / self.dt
+        D = self.kd * derivative
+
+        # Store the previous error for utilization
+        self.prev_error = error
