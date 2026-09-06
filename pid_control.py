@@ -27,10 +27,19 @@ class PID:
     def update_feedback(self, feedback):
         self.feedback = feedback
 
+    # Deadzone (tiny neglected error)
+    def set_deadzone(self, deadzone):
+        # Store the value of the deadzone only to facilitate comparison
+        self.deadzone = abs(deadzone)
+        
     # Compute method
     def compute(self):
         # Calculate the error 
         error = self.target - self.feedback
+
+        # Check if error is acceptable
+        if abs(error) <= self.deadzone:
+            error = 0
 
         # Calculate proportional action
         P = self.kp * error
