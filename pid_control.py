@@ -31,13 +31,13 @@ class PID:
     def set_deadzone(self, deadzone):
         # Store the value of the deadzone only to facilitate comparison
         self.deadzone = abs(deadzone)
-        
+
     # Compute method
     def compute(self):
         # Calculate the error 
         error = self.target - self.feedback
 
-        # Check if error is acceptable
+        # Check if error is acceptable (avoid jittering)
         if abs(error) <= self.deadzone:
             error = 0
 
